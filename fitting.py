@@ -253,7 +253,6 @@ def firstFullBurst(risingEdges, fallingEdges):
         fallingEdge = fallingEdges[0]
     return risingEdge, fallingEdge
 
-
 def parse_timestamp(fname, year):
     # assume format is:
     # yyyymmdd_hhmmss, local time
