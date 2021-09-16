@@ -234,8 +234,12 @@ def fitRingdownSine(times, amp, trig, samplerate, f_approx, p0, startbuffer,
         bounds = (minbounds, maxbounds)
 
         # Fit ringdown
-        popt, a, t, timesfit = fitBurstSineDecay(tN, tsubset, ampsubset, fitbuffer,
-                                fitthreshhold, bounds, p0, savePLTs=False)
+        try:
+            popt, a, t, timesfit = fitBurstSineDecay(tN, tsubset, ampsubset, fitbuffer,
+                                    fitthreshhold, bounds, p0, savePLTs=False)
+        except:
+            popt, a, t, timesfit = fitBurstSineDecay(tN, tsubset, ampsubset, fitbuffer,
+                                    fitthreshhold, bounds=(-np.inf, np.inf), p0=p0, savePLTs=False)
         p0 = popt # set new initial conditions for the next fit
 
         # Extract fit parameters and calculate Q
