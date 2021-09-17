@@ -524,7 +524,7 @@ def fitRingdownFFT(amp, times, samplerate, f_approx, binfactor=10,
 
     print(20*'~')
     print('Finding bursts.....')
-    posEdges, negEdges = ft.softwareTrigger(t, maxvals, mph=mph)
+    posEdges,negEdges = ft.softwareTrigger(t, maxvals, mph=mph)
 
     numBursts = min(np.size(posEdges), np.size(negEdges))
     burstPeriod = np.median(np.diff(times[posEdges])) # seconds
@@ -722,7 +722,7 @@ def fitRingdownLI(t, r, phi, carr, carphi, f_approx,
                 useCarEdges=True, mph = 0.4, buffer = 0.002,
                 amplitude_SNR_thresh = 0.5, max_expected_detuning=15000,
                 savePLTs=True):
-
+    t = t-t[0]
     if useCarEdges:
         posEdges, negEdges = ft.softwareTrigger(t, carr, mph=mph)
     else:
